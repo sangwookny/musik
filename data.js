@@ -1,9 +1,7 @@
-/* [관리자용 안내] 
-   이미지를 업로드하시면, 제가 이 파일의 '전체 내용'을 새로 업데이트해서 드립니다.
-   님은 기존 내용을 모두 지우고, 새 코드를 '덮어쓰기'만 하세요.
-*/
+/* data.js - 전체 내용을 복사해서 기존 파일에 덮어쓰세요 */
 
 const musicData = [
+    // [364번: 짧은 앞꾸밈음]
     {
         id: "364",
         title: "Kurzer Vorschlag",
@@ -32,6 +30,8 @@ const musicData = [
             }
         ]
     },
+
+    // [365번: 긴 앞꾸밈음]
     {
         id: "365",
         title: "Langer Vorschlag",
@@ -53,6 +53,38 @@ const musicData = [
             }
         ]
     },
+
+    // [375번: 글리산도 & 포르타멘토 (NEW)]
+    {
+        id: "375",
+        title: "Glissando",
+        desc: "글리산도와 포르타멘토 (음의 미끄러짐)",
+        sections: [
+            {
+                type: "Definition (정의)",
+                german: "Wenn zwei Töne so fließend miteinander verbunden werden, dass fast alle dazwischen liegenden Tonhöhen lückenlos kurz anklingen, dann spricht man von Glissando.",
+                translation: "두 음이 아주 유려하게 연결되어 그 사이의 거의 모든 음높이가 빈틈없이 짧게 울릴 때, 이를 '글리산도'라고 합니다.",
+                vocab: [{word:"fließend",mean:"흐르는 듯한"}, {word:"lückenlos",mean:"빈틈없는"}, {word:"anklingen",mean:"소리가 울리다"}],
+                grammar: "'Wenn..., dann...' (만약 ~라면, 그러면 ~이다) 구조의 조건문입니다."
+            },
+            {
+                type: "Technik (악기별 기법)",
+                german: "Der Geiger erzielt diesen Effekt durch Gleiten des Fingers auf der Saite, der Posaunist durch Ziehen des Zuges.",
+                translation: "바이올린 연주자는 현 위에서 손가락을 미끄러뜨려 이 효과를 내고, 트롬본 연주자는 슬라이드(Zug)를 당겨서 연주합니다.",
+                vocab: [{word:"erzielen",mean:"달성하다/얻다"}, {word:"das Gleiten",mean:"미끄러짐"}, {word:"der Zug",mean:"당김/슬라이드"}],
+                grammar: "각 악기별로 'durch ~(함으)로써'를 사용하여 수단을 설명하고 있습니다."
+            },
+            {
+                type: "vs Portamento (비교)",
+                german: "Während das Glissando vom Komponisten in der Regel vorgeschrieben wird, ist das Portamento ein persönliches Gestaltungsmittel des Interpreten.",
+                translation: "글리산도는 대개 작곡가에 의해 지시(기보)되는 반면, 포르타멘토는 연주자의 개인적인 표현 수단입니다.",
+                vocab: [{word:"vorgeschrieben",mean:"규정된/지시된"}, {word:"das Gestaltungsmittel",mean:"표현 수단"}, {word:"der Interpret",mean:"연주자/해석자"}],
+                grammar: "'Während'(~인 반면에)를 사용하여 두 개념의 결정적인 차이(지시 vs 자유)를 대조하고 있습니다."
+            }
+        ]
+    },
+
+    // [376번: 트레몰로]
     {
         id: "376",
         title: "Tremolo",
