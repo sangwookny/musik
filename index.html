@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Musiktheorie Index</title>
+    <title>Musiktheorie App</title>
     <style>
-        /* [Design System] 미니멀 & 아카데믹 스타일 */
+        /* [Design System] */
         :root {
             --bg-paper: #FDFBF7;
             --card-bg: #FFFFFF;
             --text-ink: #222222;
-            --text-sub: #888888;
+            --text-sub: #666666;
             --accent-line: #0056D6;
-            --border-color: #EFEFEF;
             --font-serif: "Times New Roman", Times, Baskerville, serif;
-            --font-ui: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
+            --font-ui: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
         }
 
         body {
@@ -27,174 +26,227 @@
             min-height: 100vh;
         }
 
-        /* 헤더 스타일 */
-        .header-container {
-            padding: 40px 20px 20px 20px;
-            background-color: rgba(253, 251, 247, 0.95);
+        /* 공통 헤더 */
+        .app-header {
+            padding: 20px;
+            background: rgba(253, 251, 247, 0.95);
             position: sticky;
             top: 0;
             z-index: 100;
             border-bottom: 1px solid rgba(0,0,0,0.05);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        h1 {
+        .header-title {
             font-family: var(--font-serif);
-            font-size: 28px;
-            margin: 0;
-            letter-spacing: -0.5px;
-            color: #111;
+            font-size: 20px;
+            font-weight: 700;
         }
 
-        .subtitle {
-            font-size: 13px;
-            color: var(--text-sub);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 6px;
+        .back-btn {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            display: none; /* 상세페이지에서만 보임 */
         }
 
-        /* 리스트 컨테이너 */
-        .list-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* 리스트 아이템 (카드) */
-        .entry-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            margin-bottom: 12px;
-            -webkit-tap-highlight-color: transparent; /* 터치 시 파란 박스 제거 */
-        }
-
+        /* 1. 리스트 뷰 스타일 */
+        #listView { max-width: 600px; margin: 0 auto; padding: 20px; }
+        
         .entry-card {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 22px 20px;
+            padding: 20px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-color);
-            transition: transform 0.1s ease, background-color 0.1s ease;
+            border: 1px solid #EFEFEF;
+            cursor: pointer;
+            transition: transform 0.1s;
         }
+        .entry-card:active { transform: scale(0.98); background-color: #F5F5F7; }
+        .entry-num { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--accent-line); min-width: 45px; }
+        .entry-main { flex: 1; }
+        .entry-tit { font-family: var(--font-serif); font-size: 18px; font-weight: 500; display: block; }
+        .entry-desc { font-size: 13px; color: var(--text-sub); }
 
-        /* 아이폰 터치 반응 효과 */
-        .entry-link:active .entry-card {
-            transform: scale(0.98);
-            background-color: #F5F5F7;
+        /* 2. 상세 뷰 스타일 */
+        #detailView { max-width: 600px; margin: 0 auto; padding: 20px; padding-bottom: 100px; display: none; }
+        
+        .section-title {
+            font-weight: 700; margin-top: 30px; margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: space-between; font-size: 15px;
         }
+        .german-text {
+            font-family: var(--font-serif); font-size: 20px; line-height: 1.5;
+            padding: 18px; border-radius: 12px; cursor: pointer;
+            background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+            border-left: 4px solid transparent; margin-bottom: 10px;
+            transition: 0.2s;
+        }
+        .german-text.active { background-color: #E8F0FE; border-left-color: var(--accent-line); }
+        
+        /* 튜터 패널 */
+        .tutor-panel {
+            display: none; background: #fff; border: 1px solid #eee;
+            border-radius: 12px; padding: 20px; margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); animation: slideDown 0.3s;
+        }
+        @keyframes slideDown { from {opacity:0; transform:translateY(-10px);} to {opacity:1;} }
+        
+        .audio-btn { border: 1px solid #ddd; background:none; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; cursor:pointer;}
+        .audio-btn:active { background-color: #eee; }
 
-        .entry-info {
-            display: flex;
-            align-items: flex-start; /* 상단 정렬 */
-            gap: 15px;
-        }
+        .translation { font-weight: 600; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; line-height: 1.6; }
+        .vocab-item { font-size: 14px; margin-bottom: 8px; display: flex; flex-direction: column; }
+        .vocab-word { color: var(--accent-line); font-weight: 700; font-family: var(--font-serif); font-size: 15px; }
+        .vocab-mean { color: #555; font-size: 13px; }
+        
+        .grammar-box { background: #F7F9FC; padding: 12px; border-radius: 8px; font-size: 13px; margin-top: 15px; border-left: 3px solid var(--accent-line); line-height: 1.5; }
 
-        .entry-number {
-            font-family: var(--font-serif);
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--accent-line);
-            min-width: 40px;
-            margin-top: 2px; /* 텍스트 줄맞춤 */
-        }
-
-        .entry-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .entry-title {
-            font-family: var(--font-serif);
-            font-size: 18px;
-            color: var(--text-ink);
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-
-        .entry-desc {
-            font-size: 13px;
-            color: var(--text-sub);
-            line-height: 1.4;
-        }
-
-        .entry-arrow {
-            color: #DDD;
-            font-size: 20px;
-            padding-left: 10px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #aaa;
-            font-size: 12px;
-        }
     </style>
 </head>
 <body>
 
-    <div class="header-container">
-        <div style="max-width: 600px; margin: 0 auto;">
-            <h1>Musiklexikon</h1>
-            <div class="subtitle">Verzeichnis (Index)</div>
-        </div>
+    <div class="app-header">
+        <div class="back-btn" id="backBtn" onclick="goBack()">←</div>
+        <div class="header-title" id="headerTitle">Musiklexikon</div>
+        <div style="width: 24px;"></div>
     </div>
 
-    <div class="list-container" id="list-root">
-        </div>
+    <div id="listView"></div>
 
-    <footer>
-        &copy; Sangwookny Music Archive
-    </footer>
+    <div id="detailView"></div>
+
+    <script src="data.js"></script>
 
     <script>
-        /* [데이터 추가하는 곳] 
-           여기에 중괄호 {} 묶음을 복사해서 계속 추가하시면 됩니다.
-        */
-        const dictionary = [
-            { 
-                number: '364', 
-                title: 'Kurzer Vorschlag', 
-                desc: '짧은 앞꾸밈음 (Acciaccatura)', 
-                file: '364.html' 
-            },
-            { 
-                number: '365', 
-                title: 'Langer Vorschlag', 
-                desc: '긴 앞꾸밈음 (Appoggiatura)', 
-                file: '365.html' 
+        const listView = document.getElementById('listView');
+        const detailView = document.getElementById('detailView');
+        const headerTitle = document.getElementById('headerTitle');
+        const backBtn = document.getElementById('backBtn');
+
+        // 초기 실행
+        init();
+
+        function init() {
+            renderList();
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (id) {
+                openDetail(id);
             }
-        ];
+        }
 
-        // 리스트 생성 로직
-        const root = document.getElementById('list-root');
-
-        dictionary.forEach(item => {
-            const link = document.createElement('a');
-            link.className = 'entry-link';
-            link.href = item.file;
-
-            link.innerHTML = `
-                <div class="entry-card">
-                    <div class="entry-info">
-                        <span class="entry-number">${item.number}</span>
-                        <div class="entry-content">
-                            <span class="entry-title">${item.title}</span>
-                            <span class="entry-desc">${item.desc}</span>
-                        </div>
+        // 1. 목록 그리기
+        function renderList() {
+            listView.innerHTML = '';
+            musicData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'entry-card';
+                card.onclick = () => {
+                    history.pushState(null, '', `?id=${item.id}`);
+                    openDetail(item.id);
+                };
+                card.innerHTML = `
+                    <div class="entry-num">${item.id}</div>
+                    <div class="entry-main">
+                        <span class="entry-tit">${item.title}</span>
+                        <span class="entry-desc">${item.desc}</span>
                     </div>
-                    <div class="entry-arrow">›</div>
-                </div>
-            `;
+                    <div style="color:#ddd; font-size:20px;">›</div>
+                `;
+                listView.appendChild(card);
+            });
+        }
+
+        // 2. 상세 화면 열기
+        function openDetail(id) {
+            const data = musicData.find(d => d.id === id);
+            if (!data) return;
+
+            listView.style.display = 'none';
+            detailView.style.display = 'block';
+            backBtn.style.display = 'block';
+            headerTitle.innerText = `${data.id}. ${data.title}`;
+            window.scrollTo(0, 0);
+
+            let html = '';
             
-            root.appendChild(link);
-        });
+            data.sections.forEach((sec, index) => {
+                let vocabHtml = '';
+                if (sec.vocab) {
+                    sec.vocab.forEach(v => {
+                        vocabHtml += `
+                        <div class="vocab-item">
+                            <span class="vocab-word">${v.word}</span>
+                            <span class="vocab-mean">${v.mean}</span>
+                        </div>`;
+                    });
+                }
+
+                html += `
+                    <div class="section-title">
+                        <span>${sec.type}</span>
+                        <button class="audio-btn" onclick="speak('${sec.german.replace(/'/g, "\\'")}')">🔊</button>
+                    </div>
+                    <div class="german-text" onclick="toggleTutor('tutor-${index}', this)">
+                        ${sec.german}
+                    </div>
+                    <div id="tutor-${index}" class="tutor-panel">
+                        <div class="translation">${sec.translation}</div>
+                        ${vocabHtml ? `<div style="margin-bottom:10px;"><strong style="font-size:12px; color:#888;">VOKABELN</strong></div>${vocabHtml}` : ''}
+                        ${sec.grammar ? `<div class="grammar-box"><strong>💡 문법/Tip:</strong><br>${sec.grammar}</div>` : ''}
+                    </div>
+                `;
+            });
+
+            detailView.innerHTML = html;
+        }
+
+        // 뒤로 가기
+        function goBack() {
+            listView.style.display = 'block';
+            detailView.style.display = 'none';
+            backBtn.style.display = 'none';
+            headerTitle.innerText = 'Musiklexikon';
+            history.pushState(null, '', window.location.pathname);
+        }
+
+        window.toggleTutor = function(id, el) {
+            const panel = document.getElementById(id);
+            const allPanels = document.querySelectorAll('.tutor-panel');
+            const allTexts = document.querySelectorAll('.german-text');
+            const isOpen = panel.style.display === 'block';
+
+            allPanels.forEach(p => p.style.display = 'none');
+            allTexts.forEach(t => t.classList.remove('active'));
+
+            if (!isOpen) {
+                panel.style.display = 'block';
+                el.classList.add('active');
+                setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+            }
+        }
+
+        window.speak = function(text) {
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = 'de-DE';
+            u.rate = 0.8;
+            window.speechSynthesis.speak(u);
+        }
+        
+        window.onpopstate = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (id) openDetail(id); else goBack();
+        };
     </script>
 
 </body>
