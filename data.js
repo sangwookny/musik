@@ -1,7 +1,7 @@
-/* data.js */
+/* data.js - 전체 복사해서 덮어쓰세요 */
 
 const musicData = [
-    // 364번 항목
+    // [364번: 짧은 앞꾸밈음]
     {
         id: "364",
         title: "Kurzer Vorschlag",
@@ -41,7 +41,8 @@ const musicData = [
             }
         ]
     },
-    // 365번 항목
+
+    // [365번: 긴 앞꾸밈음]
     {
         id: "365",
         title: "Langer Vorschlag",
@@ -80,8 +81,9 @@ const musicData = [
                 grammar: "긴 앞꾸밈음은 본음표의 길이를 상당히 많이(절반 이상) 뺏어오는 것이 특징입니다."
             }
         ]
-    }
-    // ▼ 아래 코드를 복사해서 data.js의 마지막 콤마 뒤에 붙여넣으세요!
+    },
+
+    // [376번: 트레몰로 (New)]
     {
         id: "376",
         title: "Tremolo",
@@ -121,5 +123,5 @@ const musicData = [
                 grammar: "'ist ... zu unterscheiden'은 '구별되어야 한다'는 수동의 의미(sein + zu 부정사)를 가집니다."
             }
         ]
-    },
+    }
 ];
