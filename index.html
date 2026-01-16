@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Musiktheorie - Index</title>
+    <title>Musiktheorie Index</title>
     <style>
-        /* [Design System] Consistent with content pages */
+        /* [Design System] 미니멀 & 아카데믹 스타일 */
         :root {
             --bg-paper: #FDFBF7;
             --card-bg: #FFFFFF;
@@ -14,7 +14,7 @@
             --accent-line: #0056D6;
             --border-color: #EFEFEF;
             --font-serif: "Times New Roman", Times, Baskerville, serif;
-            --font-sans: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
+            --font-ui: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
         }
 
         body {
@@ -22,22 +22,21 @@
             color: var(--text-ink);
             margin: 0;
             padding: 0;
-            font-family: var(--font-sans);
+            font-family: var(--font-ui);
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
         }
 
-        /* [Header] */
+        /* 헤더 스타일 */
         .header-container {
             padding: 40px 20px 20px 20px;
-            background-color: var(--bg-paper);
+            background-color: rgba(253, 251, 247, 0.95);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
             border-bottom: 1px solid rgba(0,0,0,0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            background-color: rgba(253, 251, 247, 0.95);
         }
 
         h1 {
@@ -56,45 +55,43 @@
             margin-top: 6px;
         }
 
-        /* [List Container] */
+        /* 리스트 컨테이너 */
         .list-container {
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* [List Item] */
+        /* 리스트 아이템 (카드) */
         .entry-link {
             text-decoration: none;
             color: inherit;
             display: block;
             margin-bottom: 12px;
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent; /* 터치 시 파란 박스 제거 */
         }
 
         .entry-card {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 20px;
+            padding: 22px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
             border: 1px solid var(--border-color);
-            transition: transform 0.15s, background-color 0.15s, box-shadow 0.15s;
+            transition: transform 0.1s ease, background-color 0.1s ease;
         }
 
-        /* Touch Interaction */
+        /* 아이폰 터치 반응 효과 */
         .entry-link:active .entry-card {
             transform: scale(0.98);
-            background-color: #F8F8F8;
-            box-shadow: none;
+            background-color: #F5F5F7;
         }
 
-        /* Item Content Layout */
         .entry-info {
             display: flex;
-            align-items: baseline;
+            align-items: flex-start; /* 상단 정렬 */
             gap: 15px;
         }
 
@@ -103,7 +100,13 @@
             font-size: 18px;
             font-weight: 700;
             color: var(--accent-line);
-            min-width: 40px; /* 숫자 정렬을 위해 고정 너비 */
+            min-width: 40px;
+            margin-top: 2px; /* 텍스트 줄맞춤 */
+        }
+
+        .entry-content {
+            display: flex;
+            flex-direction: column;
         }
 
         .entry-title {
@@ -111,30 +114,27 @@
             font-size: 18px;
             color: var(--text-ink);
             font-weight: 500;
+            margin-bottom: 4px;
         }
 
         .entry-desc {
-            display: block;
-            font-family: var(--font-sans);
             font-size: 13px;
             color: var(--text-sub);
-            margin-top: 4px;
+            line-height: 1.4;
         }
 
         .entry-arrow {
-            color: #CCC;
+            color: #DDD;
             font-size: 20px;
-            font-weight: 300;
+            padding-left: 10px;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 40px;
             color: #aaa;
             font-size: 12px;
         }
-
     </style>
 </head>
 <body>
@@ -154,11 +154,8 @@
     </footer>
 
     <script>
-        /* [설정] 여기에 새 항목을 추가하면 자동으로 리스트에 뜹니다.
-           number: 번호
-           title: 독일어 용어
-           desc: 간단한 설명 (한국어/영어 등)
-           file: 연결할 파일 이름
+        /* [데이터 추가하는 곳] 
+           여기에 중괄호 {} 묶음을 복사해서 계속 추가하시면 됩니다.
         */
         const dictionary = [
             { 
@@ -167,12 +164,38 @@
                 desc: '짧은 앞꾸밈음 (Acciaccatura)', 
                 file: '364.html' 
             },
+            { 
+                number: '365', 
+                title: 'Langer Vorschlag', 
+                desc: '긴 앞꾸밈음 (Appoggiatura)', 
+                file: '365.html' 
+            }
         ];
 
-        // 리스트 생성 로직 (수정할 필요 없음)
+        // 리스트 생성 로직
         const root = document.getElementById('list-root');
 
         dictionary.forEach(item => {
             const link = document.createElement('a');
             link.className = 'entry-link';
-            link.href =
+            link.href = item.file;
+
+            link.innerHTML = `
+                <div class="entry-card">
+                    <div class="entry-info">
+                        <span class="entry-number">${item.number}</span>
+                        <div class="entry-content">
+                            <span class="entry-title">${item.title}</span>
+                            <span class="entry-desc">${item.desc}</span>
+                        </div>
+                    </div>
+                    <div class="entry-arrow">›</div>
+                </div>
+            `;
+            
+            root.appendChild(link);
+        });
+    </script>
+
+</body>
+</html>
