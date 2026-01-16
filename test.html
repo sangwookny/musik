@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Academic German Reader</title>
+    <style>
+        /* [Design System] Academic & Minimal */
+        :root {
+            --bg-paper: #FDFBF7; /* 눈이 편안한 미색 종이 컬러 */
+            --text-ink: #222222;
+            --text-sub: #666666;
+            --accent-highlight: #E8F0FE; /* 선택 시 배경색 */
+            --accent-line: #0056D6; /* 아이폰 스타일 블루 */
+            --font-german: "Times New Roman", Times, Baskerville, serif;
+            --font-ui: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-ink);
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-ui);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 100px; /* 하단 여백 확보 */
+        }
+
+        /* [Header] */
+        header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        h1 {
+            font-family: var(--font-german);
+            font-size: 28px;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* [Content Area] */
+        .section-title {
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .audio-btn {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sub);
+            transition: all 0.2s;
+        }
+        
+        .audio-btn:active {
+            background-color: #eee;
+            transform: scale(0.95);
+        }
+
+        /* 독일어 문장 (인터랙티브) */
+        .german-text {
+            font-family: var(--font-german);
+            font-size: 19px;
+            line-height: 1.5;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-left: 3px solid transparent;
+            margin-bottom: 8px;
+        }
+
+        /* 터치 시 활성화 상태 */
+        .german-text.active {
+            background-color: var(--accent-highlight);
+            border-left-color: var(--accent-line);
+        }
+
+        /* [Tutoring Panel] - 하단에 뜨는 해설창 */
+        .tutor-panel {
+            display: none; /* 기본 숨김 */
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .translation {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .grammar-note {
+            font-size: 14px;
+            color: #444;
+            background-color: #F5F5F7;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .note-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .vocab-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .vocab-item {
+            display: flex;
+            margin-bottom: 4px;
+        }
+        .vocab-word { font-weight: 600; width: 100px; font-family: var(--font-german); }
+        .vocab-mean { color: #555; }
+
+        .grammar-point {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>364 Kurzer Vorschlag</h1>
+        <div class="subtitle">Interactive Music Theory Analysis</div>
+    </header>
+
+    <div class="section-title">
+        <span>Bild (표기)</span>
+        <button class="audio-btn" onclick="speakText('text1')">🔊</button>
+    </div>
+    
+    <div class="german-text" id="text1" onclick="toggleTutor('tutor1', this)">
+        Kleine Achtelnote mit durchstrichenem Fähnchen, Hals zeigt nach oben; meist mit Bogen zur Hauptnote gebunden.
+    </div>
+
+    <div id="tutor1" class="tutor-panel">
+        <div class="translation">
+            "깃에 사선이 그어진 작은 8분음표이며, 기둥은 위쪽을 향합니다. 대개 이음줄로 본음표와 연결됩니다."
+        </div>
+        <div class="grammar-note">
+            <span class="note-title">Vocabulary & Grammar</span>
+            <ul class="vocab-list">
+                <li class="vocab-item"><span class="vocab-word">durchstrichen</span><span class="vocab-mean">선을 그어 지운, 사선의</span></li>
+                <li class="vocab-item"><span class="vocab-word">das Fähnchen</span><span class="vocab-mean">작은 깃발 (음표 꼬리)</span></li>
+                <li class="vocab-item"><span class="vocab-word">der Hals</span><span class="vocab-mean">목 (음표 기둥)</span></li>
+            </ul>
+            <div class="grammar-point">
+                <strong>💡 문법 포인트:</strong><br>
+                'mit ... gebunden' (수동적 의미의 과거분사): '~와 연결된 상태'를 묘사합니다.
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section-title">
+        <span>Ausführung (연주법)</span>
+        <button class="audio-btn" onclick="speakText('text2')">🔊</button>
+    </div>
+
+    <div class="german-text" id="text2" onclick="toggleTutor('tutor2', this)">
+        Vorschlagsnote kommt entweder auf die Zählzeit der Hauptnote und verkürzt sie.
+    </div>
+
+    <div id="tutor2" class="tutor-panel">
+        <div class="translation">
+            "꾸밈음은 본음표의 박자(Zählzeit)에 등장하여 본음표의 길이를 단축시킵니다."
+        </div>
+        <div class="grammar-note">
+            <span class="note-title">Vocabulary & Grammar</span>
+            <ul class="vocab-list">
+                <li class="vocab-item"><span class="vocab-word">die Zählzeit</span><span class="vocab-mean">박자, 카운트</span></li>
+                <li class="vocab-item"><span class="vocab-word">verkürzen</span><span class="vocab-mean">줄이다, 단축하다</span></li>
+            </ul>
+            <div class="grammar-point">
+                <strong>💡 문법 포인트:</strong><br>
+                'entweder ... oder' (A 아니면 B) 구문의 첫 번째 부분입니다. 꾸밈음이 정박에 오는 경우를 설명합니다.
+            </div>
+        </div>
+    </div>
+
+    <div class="german-text" id="text3" onclick="toggleTutor('tutor3', this)">
+        Oder erscheint (verbreitet seit etwa 1850) unbetont kurz davor.
+    </div>
+
+    <div id="tutor3" class="tutor-panel">
+        <div class="translation">
+            "또는 (1850년경부터 널리 퍼진 방식으로는) 강세 없이 본음표 바로 직전에 연주됩니다."
+        </div>
+        <div class="grammar-note">
+            <span class="note-title">Vocabulary & Grammar</span>
+            <ul class="vocab-list">
+                <li class="vocab-item"><span class="vocab-word">verbreitet</span><span class="vocab-mean">널리 퍼진, 일반적인</span></li>
+                <li class="vocab-item"><span class="vocab-word">unbetont</span><span class="vocab-mean">강세 없는 (여리게)</span></li>
+            </ul>
+            <div class="grammar-point">
+                <strong>💡 해석 팁:</strong><br>
+                괄호 안의 삽입구는 역사적 맥락(1850년 이후 낭만주의)을 설명하며, 현대 연주 관습의 변화를 보여줍니다.
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // 1. Text-to-Speech (TTS) Function
+    function speakText(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        
+        // 브라우저 TTS 지원 확인 및 설정
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // 기존 음성 중단
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'de-DE'; // 독일어 설정
+            utterance.rate = 0.9; // 약간 천천히 읽기 (학습용)
+            
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("이 브라우저는 음성 재생을 지원하지 않습니다.");
+        }
+    }
+
+    // 2. Tutoring Panel Toggle Logic
+    function toggleTutor(panelId, textElement) {
+        // 모든 튜터 패널 숨기기 & 텍스트 활성 상태 끄기
+        document.querySelectorAll('.tutor-panel').forEach(el => {
+            if (el.id !== panelId) el.style.display = 'none';
+        });
+        document.querySelectorAll('.german-text').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // 선택한 패널 토글
+        const panel = document.getElementById(panelId);
+        if (panel.style.display === 'block') {
+            panel.style.display = 'none';
+            textElement.classList.remove('active');
+        } else {
+            panel.style.display = 'block';
+            textElement.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
