@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>364 Kurzer Vorschlag</title>
+    <style>
+        /* 1. 기본 설정 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
+            background-color: #f7f7f8;
+            color: #1c1c1e;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding-bottom: 50px;
+        }
+
+        h1 { font-size: 20px; font-weight: 700; color: #1c1c1e; margin-bottom: 5px; }
+        p.subtitle { font-size: 14px; color: #8e8e93; margin: 0 0 25px 0; }
+
+        /* 2. 카드 스타일 */
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.1s ease, border-color 0.2s;
+            cursor: pointer;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+        }
+
+        .card:active { transform: scale(0.98); background-color: #fafafa; }
+        .card.active { border-color: #007aff; box-shadow: 0 4px 20px rgba(0,122,255,0.15); }
+
+        /* 3. 헤더 영역 */
+        .card-header {
+            padding: 24px 24px 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            -webkit-user-select: none; user-select: none;
+        }
+
+        .de-text {
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 500;
+            color: #1c1c1e;
+            width: 85%;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            min-width: 30px;
+        }
+
+        /* 듣기 버튼 */
+        .audio-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #f2f2f7;
+            color: #007aff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+        
+        .audio-btn:active {
+            background-color: #e5e5ea;
+            transform: scale(0.9);
+        }
+
+        .toggle-icon {
+            color: #c7c7cc;
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+        .card.active .toggle-icon { transform: rotate(180deg); color: #007aff; }
+
+        /* 4. 해석 영역 */
+        .expand-section {
+            max-height: 0;
+            overflow: hidden;
+            background-color: #f2f2f7;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-inner {
+            padding: 20px 24px 24px 24px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .ko-text { font-size: 16px; color: #1c1c1e; font-weight: 600; margin-bottom: 16px; line-height: 1.5; }
+        .note-box { background-color: white; padding: 12px 16px; border-radius: 10px; border-left: 4px solid #007aff; }
+        .note-title { font-size: 12px; color: #007aff; font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
+        .note-desc { font-size: 14px; color: #636366; line-height: 1.4; }
+        .highlight { color: #007aff; font-weight: 600; }
+
+        /* 이미지 카드 */
+        .image-card {
+            background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            overflow: hidden; border: 1px solid rgba(0,0,0,0.05); margin-top: 30px;
+        }
+        .image-header {
+            padding: 15px 20px; font-size: 14px; font-weight: 700; color: #8e8e93;
+            background: #fafafa; border-bottom: 1px solid #f0f0f0; text-transform: uppercase;
+        }
+        .image-container { padding: 20px; display: flex; justify-content: center; }
+        .music-img { max-width: 100%; height: auto; display: block; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>364 Kurzer Vorschlag</h1>
+        <p class="subtitle">스피커(🔊)를 누르면 구글 성우가 읽어줍니다.</p>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="de-text">
+                    Bild: kleine Achtelnote mit durchstrichenem Fähnchen...
+                </div>
+                <div class="controls">
+                    <div class="audio-btn" onclick="playGoogleTTS(event, 'Bild: kleine Achtelnote mit durchstrichenem Fähnchen')">🔊</div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+            </div>
+            <div class="expand-section">
+                <div class="content-inner">
+                    <div class="ko-text">"그림: 사선 꼬리가 달린 작은 8분음표..."</div>
+                    <div class="note-box">
+                        <div class="note-title">Point</div>
+                        <div class="note-desc"><span class="highlight">durchstrichenem</span>은 '선을 그어 지운'이라는 뜻입니다.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="de-text">
+                    ...Hals zeigt nach oben; meist mit Bogen zur Hauptnote gebunden;
+                </div>
+                <div class="controls">
+                    <div class="audio-btn" onclick="playGoogleTTS(event, 'Hals zeigt nach oben; meist mit Bogen zur Hauptnote gebunden')">🔊</div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+            </div>
+            <div class="expand-section">
+                <div class="content-inner">
+                    <div class="ko-text">"...기둥은 위를 향하고, 대개 이음줄로 주음과 연결됩니다."</div>
+                    <div class="note-box">
+                        <div class="note-title">Grammar</div>
+                        <div class="note-desc"><span class="highlight">gebunden</span>은 '묶다'의 과거분사로, 이음줄로 연결된 상태를 말합니다.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="de-text">
+                    Ausführung: Vorschlagsnote kommt entweder auf die Zählzeit...
+                </div>
+                <div class="controls">
+                    <div class="audio-btn" onclick="playGoogleTTS(event, 'Ausführung: Vorschlagsnote kommt entweder auf die Zählzeit der Hauptnote und verkürzt sie')">🔊</div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+            </div>
+            <div class="expand-section">
+                <div class="content-inner">
+                    <div class="ko-text">"연주: 꾸밈음은 주음의 박(Zählzeit)에 맞춰 나오거나..."</div>
+                    <div class="note-box">
+                        <div class="note-title">Expression</div>
+                        <div class="note-desc"><span class="highlight">entweder ... oder ...</span> (A 아니면 B) 구문입니다.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="de-text">
+                    ...oder erscheint (verbreitet seit etwa 1850) unbetont kurz davor.
+                </div>
+                <div class="controls">
+                    <div class="audio-btn" onclick="playGoogleTTS(event, 'oder erscheint verbreitet seit etwa 1850 unbetont kurz davor')">🔊</div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+            </div>
+            <div class="expand-section">
+                <div class="content-inner">
+                    <div class="ko-text">"...또는 (1850년경부터 보편화된 방식으로) 강세 없이 그 직전에 짧게 연주됩니다."</div>
+                    <div class="note-box">
+                        <div class="note-title">Context</div>
+                        <div class="note-desc"><span class="highlight">unbetont</span>(강세 없는)가 핵심입니다.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <div class="image-header">Notenbeispiel (악보 예시)</div>
+            <div class="image-container">
+                <img src="note.png" alt="악보 예시" class="music-img">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentAudio = null;
+
+        function playGoogleTTS(event, text) {
+            event.stopPropagation(); // 카드 펼침 방지
+
+            // 1. 기존 오디오 정지
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            // 2. 구글 번역기 오디오 주소 생성 (마법의 URL)
+            // client=tw-ob : 구글 번역기 API 우회용 파라미터
+            // tl=de : 독일어(German)
+            // q=텍스트 : 읽을 내용
+            const url = "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=de&q=" + encodeURIComponent(text);
+
+            // 3. 재생
+            const audio = new Audio(url);
+            audio.play().catch(e => {
+                alert('재생 오류: 인터넷 연결을 확인해주세요.');
+            });
+            
+            currentAudio = audio;
+        }
+
+        // 카드 펼침 로직
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    this.classList.toggle('active');
+                    const section = this.querySelector('.expand-section');
+                    if (this.classList.contains('active')) {
+                        section.style.maxHeight = section.scrollHeight + "px";
+                    } else {
+                        section.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
