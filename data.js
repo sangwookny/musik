@@ -80,5 +80,46 @@ const musicData = [
                 grammar: "긴 앞꾸밈음은 본음표의 길이를 상당히 많이(절반 이상) 뺏어오는 것이 특징입니다."
             }
         ]
-    }
+    },
+    // ▼ 아래 코드를 복사해서 data.js의 마지막 콤마 뒤에 붙여넣으세요!
+    {
+        id: "376",
+        title: "Tremolo",
+        desc: "트레몰로 (떨림 연주)",
+        sections: [
+            {
+                type: "1. Definition (정의)",
+                german: "Als Tremolo (lat. = zittern) bezeichnet man das sehr rasche Wiederholen eines Tones, meist aber den schnellen mehrfachen Wechsel zweier Töne oder Akkordteile.",
+                translation: "트레몰로(라틴어 '떨다')란 한 음을 매우 빠르게 반복하는 것을 말하지만, 대개는 두 개의 음이나 화음의 구성음을 여러 번 빠르게 교대하는 것을 의미합니다.",
+                vocab: [
+                    { word: "bezeichnen", mean: "가리키다, 칭하다 (als ~라고)" },
+                    { word: "rasch", mean: "빠른, 신속한" },
+                    { word: "der Wechsel", mean: "교대, 바꿈" }
+                ],
+                grammar: "'Als A bezeichnet man B'는 'B를 A라고 부른다/정의한다'라는 뜻의 전형적인 학술적 표현입니다."
+            },
+            {
+                type: "2. Funktion (건반악기)",
+                german: "Auf Tasteninstrumenten wird tremoliert, um den rasch verklingenden Akkord klanglich zu verlängern – z.B. ein Stilmittel der Blues-Pianisten.",
+                translation: "건반 악기에서는 금방 사라지는 화음의 소리를 길게 연장하기 위해 트레몰로를 사용하는데, 예를 들어 블루스 피아니스트들의 연주 기법이 이에 해당합니다.",
+                vocab: [
+                    { word: "verklingend", mean: "소리가 사라져가는 (ver- 사라짐 + klingen 울림)" },
+                    { word: "verlängern", mean: "연장하다, 길게 늘이다" },
+                    { word: "das Stilmittel", mean: "표현 기법/수단" }
+                ],
+                grammar: "'um ... zu verlängern'은 '~하기 위하여'라는 목적을 나타내는 'um...zu' 구문입니다."
+            },
+            {
+                type: "3. Unterscheidung (구별)",
+                german: "Dabei ist das eigentliche Tremolieren, nämlich der möglichst rasche, rhythmisch aber nicht exakt festgelegte Wechsel (a), von der gleichmäßigen Wiederholung (b) zu unterscheiden.",
+                translation: "이때 '실제 트레몰로', 즉 가능한 한 빠르지만 리듬이 딱 정해지지 않은 교대(a)는, 박자에 맞춰 균일하게 반복하는 '논 트레몰로'(b)와 구별해야 합니다.",
+                vocab: [
+                    { word: "eigentlich", mean: "실제의, 본래의" },
+                    { word: "festgelegt", mean: "정해진, 고정된" },
+                    { word: "unterscheiden", mean: "구별하다" }
+                ],
+                grammar: "'ist ... zu unterscheiden'은 '구별되어야 한다'는 수동의 의미(sein + zu 부정사)를 가집니다."
+            }
+        ]
+    },
 ];
