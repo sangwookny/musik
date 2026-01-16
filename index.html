@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Musiktheorie - Index</title>
+    <style>
+        /* [Design System] Consistent with content pages */
+        :root {
+            --bg-paper: #FDFBF7;
+            --card-bg: #FFFFFF;
+            --text-ink: #222222;
+            --text-sub: #888888;
+            --accent-line: #0056D6;
+            --border-color: #EFEFEF;
+            --font-serif: "Times New Roman", Times, Baskerville, serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-ink);
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* [Header] */
+        .header-container {
+            padding: 40px 20px 20px 20px;
+            background-color: var(--bg-paper);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(253, 251, 247, 0.95);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            margin: 0;
+            letter-spacing: -0.5px;
+            color: #111;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        /* [List Container] */
+        .list-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* [List Item] */
+        .entry-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            margin-bottom: 12px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .entry-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            transition: transform 0.15s, background-color 0.15s, box-shadow 0.15s;
+        }
+
+        /* Touch Interaction */
+        .entry-link:active .entry-card {
+            transform: scale(0.98);
+            background-color: #F8F8F8;
+            box-shadow: none;
+        }
+
+        /* Item Content Layout */
+        .entry-info {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+        }
+
+        .entry-number {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-line);
+            min-width: 40px; /* 숫자 정렬을 위해 고정 너비 */
+        }
+
+        .entry-title {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            color: var(--text-ink);
+            font-weight: 500;
+        }
+
+        .entry-desc {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-top: 4px;
+        }
+
+        .entry-arrow {
+            color: #CCC;
+            font-size: 20px;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #aaa;
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h1>Musiklexikon</h1>
+            <div class="subtitle">Verzeichnis (Index)</div>
+        </div>
+    </div>
+
+    <div class="list-container" id="list-root">
+        </div>
+
+    <footer>
+        &copy; Sangwookny Music Archive
+    </footer>
+
+    <script>
+        /* [설정] 여기에 새 항목을 추가하면 자동으로 리스트에 뜹니다.
+           number: 번호
+           title: 독일어 용어
+           desc: 간단한 설명 (한국어/영어 등)
+           file: 연결할 파일 이름
+        */
+        const dictionary = [
+            { 
+                number: '364', 
+                title: 'Kurzer Vorschlag', 
+                desc: '짧은 앞꾸밈음 (Acciaccatura)', 
+                file: '364.html' 
+            },
+            // 예시: 다음 파일을 만들면 아래 주석을 풀고 사용하세요
+            // { 
+            //     number: '365', 
+            //     title: 'Langer Vorschlag', 
+            //     desc: '긴 앞꾸밈음 (Appoggiatura)', 
+            //     file: '365.html' 
+            // },
+        ];
+
+        // 리스트 생성 로직 (수정할 필요 없음)
+        const root = document.getElementById('list-root');
+
+        dictionary.forEach(item => {
+            const link = document.createElement('a');
+            link.className = 'entry-link';
+            link.href =
