@@ -54,7 +54,7 @@ const musicData = [
         ]
     },
 
-    // [375번: 글리산도 & 포르타멘토 (NEW)]
+    // [375번: 글리산도 & 포르타멘토]
     {
         id: "375",
         title: "Glissando",
@@ -110,6 +110,29 @@ const musicData = [
                 translation: "실제 트레몰로(자유로운 속도)는 박자에 맞춘 균일한 반복과는 구별해야 합니다.",
                 vocab: [{word:"eigentlich",mean:"실제의"}, {word:"unterscheiden",mean:"구별하다"}],
                 grammar: "악보 (a)는 자유롭게 호로록, (b)는 박자 세면서 정확하게 연주하라는 차이입니다."
+            }
+        ]
+    },
+
+    // [Aufgabe: 연습문제 (New!)]
+    {
+        id: "Aufgabe",
+        title: "Orchester-Übung",
+        desc: "오케스트라 악기 편성 및 이조(Transposition) 확인 문제",
+        sections: [
+            {
+                type: "1. Aufgabe (지시사항)",
+                german: "Sie hören und sehen einen Ausschnitt aus einem Werk für Sinfonieorchester. Notieren Sie links die Namen der beteiligten Instrumente.",
+                translation: "당신은 심포니 오케스트라 작품의 발췌본을 듣고 보게 됩니다. 왼쪽에 참여한 악기들의 이름을 적으세요.",
+                vocab: [{word:"der Ausschnitt",mean:"발췌/부분"}, {word:"beteiligt",mean:"참여한/관여된"}, {word:"notieren",mean:"기록하다/적다"}],
+                grammar: "'Notieren Sie'(적으세요)는 존칭 명령법(Imperativ)입니다."
+            },
+            {
+                type: "2. Hinweis (주의사항)",
+                german: "Falls es bei den Holzbläsern transponierende Instrumente gibt: Vermerken Sie zusätzlich die jeweilige Transposition (z. B.: Klarinette in A).",
+                translation: "만약 목관악기 중에 이조 악기(transposing instruments)가 있다면: 추가로 각각의 이조(조옮김) 정보를 기재하세요 (예: A조 클라리넷).",
+                vocab: [{word:"transponierend",mean:"이조하는/조옮김하는"}, {word:"vermerken",mean:"기재하다/표시하다"}, {word:"jeweilig",mean:"각각의"}],
+                grammar: "'Falls'(만약 ~라면)로 시작하는 조건문입니다. 'transponierende Instrumente'는 악보의 음과 실제 소리가 다른 악기(이조 악기)를 뜻합니다."
             }
         ]
     }
